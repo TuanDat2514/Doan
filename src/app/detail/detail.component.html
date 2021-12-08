@@ -7,7 +7,7 @@
     <div class="table">
         
         <table cellspacing="0" cellpadding="5" border="1">
-            <tr>
+            <tr class="col-1">
                 <td>Mã giao dịch</td>
                 <td>Tên giao dịch</td>
                 <td>Danh mục</td>
@@ -27,12 +27,14 @@
                     <span *ngIf="detail.status==0">Thu</span>
                     <span *ngIf="detail.status==1">Chi</span>
                 </td>
-                <td class="button">
-                    <a >
+                <td>
+                    <button class="button" (click)="delete(detail)">
+                    <a>
                         <span>
                             <i class="fas fa-trash-alt"></i>
                         </span>
                     </a>
+                    </button>
                 </td>
             </tr>
         </table>

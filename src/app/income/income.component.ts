@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { DataService, Detail } from '../data.service';
+import { DataService, Detail,User } from '../data.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 @Component({
@@ -10,6 +10,7 @@ import { AuthService } from '../auth.service';
 })
 export class IncomeComponent implements OnInit {
   public CURRENCY: string;
+
   newForm = this.fb.group({
     detail: [''],
     date: [''],
@@ -22,6 +23,7 @@ export class IncomeComponent implements OnInit {
   message:string;
   currency:any;
   user=this.authService.getLoggedInUserName();
+  users:any;
   ngOnInit(): void {
     this.CURRENCY = 'CURRENCY';
   }
@@ -39,6 +41,11 @@ export class IncomeComponent implements OnInit {
       console.log("status code:" + code);
       if (code == 200) {
         this.message="Bạn thêm thành công";
+            const userId =localStorage.getItem('userId');
+            console.log(userId);
+            let wallet = {id_wallet:userId,money:""};
+                wallet.money=this.newForm.value.price;
+            this.dataService.updateWallet(wallet); 
       }
     }
     );
@@ -46,4 +53,9 @@ export class IncomeComponent implements OnInit {
   onChangeReactiveForm(key: string) {
     this.newForm.get(key).patchValue(this.newForm.get(key).value);
     }
+    
+      
+      
 }
+
+
