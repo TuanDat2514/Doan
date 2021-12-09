@@ -34,6 +34,8 @@ export class LoginComponent implements OnInit {
     this.authService.password=this.loginForm.value.password;
     this.authService.registerSuccessfulLogin(this.loginForm.value.username)
     localStorage.setItem('userId', response.body['id_user']);
+    // localStorage.setItem('user', JSON.stringify(response.body)); // nếu cần lấy toàn bộ thông tin user 
+    // const user = localStorage.getItem('user');
     this.router.navigate(['/index']);
     }
     }, () => {
