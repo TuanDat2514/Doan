@@ -7,7 +7,7 @@
     background-color: white;
     margin-top: -330px;
     margin-left: 420px;
-    margin-right: 250px;
+    margin-right: 230px;
     overflow-y: scroll;
     
 }
@@ -19,10 +19,15 @@
     
 }
 .button{
-    background-color: royalblue
+    background-color: royalblue;
+    border-radius: 15px;
     
 }
 .button:hover{
     color: white;
     cursor: pointer;
 } 
+.col-1{
+    font-weight: bold;
+    font-size: 16px;
+}

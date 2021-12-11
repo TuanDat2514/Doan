@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from '../auth.service';
-import { LoginComponent } from '../login/login.component';
 import { Router } from '@angular/router';
+import { DataService,User,Wallet } from '../data.service';
 @Component({
   selector: 'app-taskbar',
   templateUrl: './taskbar.component.html',
@@ -10,8 +10,10 @@ import { Router } from '@angular/router';
 export class TaskbarComponent implements OnInit {
  // @ViewChild(LoginComponent)
  // private userLogin: LoginComponent;
+
   user=this.authService.getLoggedInUserName();
-  constructor(private authService: AuthService,private router: Router) { }
+  
+  constructor(private authService: AuthService,private router: Router,private dataService: DataService) { }
 
   ngOnInit(): void {
   }
@@ -19,9 +21,15 @@ export class TaskbarComponent implements OnInit {
     this.authService.logout();
     this.router.navigate(['/login']);
   }
-  id:any;
+  id:any
   tabChange(ids:any){
-     this.id=ids;
-     this.router.navigate(['/'+this.id])
+    this.id=ids;
+    this.router.navigate(['/'+this.id])
+  }
+  wallet;
+  getMoney(){
+    const userId =localStorage.getItem('userId');
+    this.dataService.getWallet(userId).subscribe((data:Wallet)=>this.wallet=data);
+  
   }
 }

@@ -11,7 +11,7 @@ export class HttpInterceptorService implements HttpInterceptor {
     Observable<HttpEvent<any>> {
     if (this.authenticationService.isUserLoggedIn() &&
       req.url.indexOf('auth') === -1) {
-      console.log(this.authenticationService.username)
+      console.log(this.authenticationService.id)
       const authReq = req.clone({
         headers: new HttpHeaders({
           'Content-Type': 'application/json',

@@ -18,5 +18,9 @@ export class DetailComponent implements OnInit {
     this.dataService.getListDetail(this.username)
     .subscribe((data: Array<Detail>) => this.details = data)
     }
-    
+    delete(detail:any){
+      this.dataService.deleteDetail(detail.id_detail).subscribe((res) =>{
+        this.displayListDetail();
+      });
+    }
 }
