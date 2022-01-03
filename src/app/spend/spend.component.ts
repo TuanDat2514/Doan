@@ -19,16 +19,20 @@ export class SpendComponent implements OnInit {
     price: [''],
     note: [''],
     username: [this.authService.getLoggedInUserName()],
+    
   });
   constructor(private fb: FormBuilder, private dataService: DataService, private router: Router, private authService: AuthService) { }
   message: string;
   currency: any;
   user = this.authService.getLoggedInUserName();
+ ;
   ngOnInit(): void {
     this.CURRENCY = 'CURRENCY';
   }
   onSubmit() {
-    let detail = { id: "", detail: "", date: "", category: "", price: "", note: "", status: 1, username: "" };
+    const userId =localStorage.getItem('userId');
+    console.log(userId)
+    let detail = { id: "", detail: "", date: "", category: "", price: "", note: "", status: 1, username:"",id_user:userId };
     detail.detail = this.newForm.value.detail;
     detail.date = this.newForm.value.date;
     detail.category = this.newForm.value.category;

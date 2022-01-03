@@ -12,10 +12,11 @@ export class TaskbarComponent implements OnInit {
  // private userLogin: LoginComponent;
 
   user=this.authService.getLoggedInUserName();
-  
+ 
   constructor(private authService: AuthService,private router: Router,private dataService: DataService) { }
-
+  
   ngOnInit(): void {
+   
   }
   logout(){
     this.authService.logout();
@@ -26,10 +27,7 @@ export class TaskbarComponent implements OnInit {
     this.id=ids;
     this.router.navigate(['/'+this.id])
   }
-  wallet;
-  getMoney(){
-    const userId =localStorage.getItem('userId');
-    this.dataService.getWallet(userId).subscribe((data:Wallet)=>this.wallet=data);
+
   
-  }
+  
 }

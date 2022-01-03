@@ -1,0 +1,12 @@
+.money{
+    position: absolute;
+    width: 300px;
+    top: 30px;
+    left: 220px;
+    font-size: 30px;
+    font-family: sans-serif;
+}
+#block{
+    display:inline-block;
+    position: relative;
+}

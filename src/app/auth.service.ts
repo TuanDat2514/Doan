@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  BASE_PATH = 'http://localhost:8080'
+  BASE_PATH = 'http://192.168.16.16:8080'
   USER_NAME_SESSION = 'username_session'
   ID_USER='id_user'
   public username: String;
@@ -55,6 +55,10 @@ export class AuthService {
     if (id === null) return ''
     return id;
   }
-  
+  getMoney(){
+    const moneyobj=localStorage.getItem('user');
+    let abc=JSON.parse(moneyobj||'{}').wallet;
+    return abc.money;
+  }
  
 }

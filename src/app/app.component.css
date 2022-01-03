@@ -8,6 +8,7 @@
     width: 15%;
     background-color:darkgreen;
     float:left;
+    cursor: pointer;
 }
 
 #slogan{

@@ -28,7 +28,9 @@ export class IncomeComponent implements OnInit {
     this.CURRENCY = 'CURRENCY';
   }
   onSubmit() {
-    let detail = { id: "", detail: "", date: "",category:"", price: "", note: "", status: 0, username:""};
+    const userId =localStorage.getItem('userId');
+    console.log(userId);
+    let detail = { id: "", detail: "", date: "",category:"", price: "", note: "", status: 0, username:"",id_user:userId};
     detail.detail = this.newForm.value.detail;
     detail.date = this.newForm.value.date;
     detail.category = this.newForm.value.category;
@@ -41,11 +43,6 @@ export class IncomeComponent implements OnInit {
       console.log("status code:" + code);
       if (code == 200) {
         this.message="Bạn thêm thành công";
-            const userId =localStorage.getItem('userId');
-            console.log(userId);
-            let wallet = {id_wallet:userId,money:""};
-                wallet.money=this.newForm.value.price;
-            this.dataService.updateWallet(wallet); 
       }
     }
     );
