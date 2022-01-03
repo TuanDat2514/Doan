@@ -23,7 +23,8 @@ const appRoutes: Routes = [
   { path: 'index', component: IndexComponent },
   { path: 'detail', component: DetailComponent },
   { path: 'income', component: IncomeComponent },
-  { path: 'spend', component: SpendComponent }
+  { path: 'spend', component: SpendComponent },
+  { path: 'statistic', component: StatisticComponent }
 ];
 @NgModule({
   declarations: [
