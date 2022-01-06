@@ -15,7 +15,7 @@ export class SpendComponent implements OnInit {
   newForm = this.fb.group({
     detail: [''],
     date: [''],
-    category: [''],
+    id_category: [''],
     price: [''],
     note: [''],
     username: [this.authService.getLoggedInUserName()],
@@ -32,10 +32,10 @@ export class SpendComponent implements OnInit {
   onSubmit() {
     const userId =localStorage.getItem('userId');
     console.log(userId)
-    let detail = { id: "", detail: "", date: "", category: "", price: "", note: "", status: 1, username:"",id_user:userId };
+    let detail = { id: "", detail: "", date: "", id_category: "", price: "", note: "", status: 1, username:"",id_user:userId };
     detail.detail = this.newForm.value.detail;
     detail.date = this.newForm.value.date;
-    detail.category = this.newForm.value.category;
+    detail.id_category = this.newForm.value.id_category;
     detail.price = this.newForm.value.price;
     detail.note = this.newForm.value.note;
     detail.username = this.newForm.value.username;

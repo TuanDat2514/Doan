@@ -9,10 +9,13 @@ import { DataService,User,Wallet } from '../data.service';
 })
 export class IndexComponent implements OnInit{
   constructor(private authService:AuthService,private dataService:DataService) { }
-  money=this.authService.getMoney();
+  
   ngOnInit(): void {
-    
+    this.getWallet();
   }
-  
-  
+  wallet;
+  getWallet(){
+    const userId =localStorage.getItem('userId');
+    this.dataService.getWallet(userId).subscribe((data:Wallet)=>this.wallet=data)
+  }
 }

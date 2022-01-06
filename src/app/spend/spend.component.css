@@ -6,7 +6,8 @@
 .block p{
     text-align: center;
     font-size: 40px;
-   
+    border-bottom: solid 2px black;
+    padding-bottom: 50px;
 }
 form .txt_field{
     position: relative;
@@ -16,7 +17,7 @@ form .txt_field{
 }
 .spend{
     background-color: white;
-    margin-top: -405px;
+    margin-top: -420px;
     margin-left: 420px;
     margin-right: 250px;
 }

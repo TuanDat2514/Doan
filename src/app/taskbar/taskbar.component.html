@@ -6,28 +6,33 @@
             <button (click)="logout()">Đăng xuất</button>
         </div>
         <div class="category">
-            
-                <a class="button" (click)="tabChange('detail')" [class.color]="id==='detail'">
-                    <span class="button-icon">
-                        <i class="fas fa-info-circle"></i>
-                    </span>
-                    <span class="button-text">Giao dịch</span>
-                </a>
-           
-                <a class="button" (click)="tabChange('income')" [class.color]="id==='income'" >
-                    <span class="button-icon">
-                        <i class="fas fa-coins"></i>
-                    </span>
-                    <span class="button-text">Thu nhập</span>
-                </a>
-            
-                <a class="button" (click)="tabChange('spend')" [class.color]="id==='spend'">
-                    <span class="button-icon">
-                        <i class="fas fa-comment-dollar"></i>
-                    </span>
-                    <span class="button-text">Chi tiêu</span>
-                </a>
-            
+            <a class="button" (click)="tabChange('index')" [class.color]="id==='index'">
+                <span class="button-icon">
+                    <i class="fas fa-home"></i>
+                </span>
+                <span class="button-text">Trang chủ</span>
+            </a>
+            <a class="button" (click)="tabChange('detail')" [class.color]="id==='detail'">
+                <span class="button-icon">
+                    <i class="fas fa-info-circle"></i>
+                </span>
+                <span class="button-text">Giao dịch</span>
+            </a>
+
+            <a class="button" (click)="tabChange('income')" [class.color]="id==='income'">
+                <span class="button-icon">
+                    <i class="fas fa-coins"></i>
+                </span>
+                <span class="button-text">Thu nhập</span>
+            </a>
+
+            <a class="button" (click)="tabChange('spend')" [class.color]="id==='spend'">
+                <span class="button-icon">
+                    <i class="fas fa-comment-dollar"></i>
+                </span>
+                <span class="button-text">Chi tiêu</span>
+            </a>
+
             <a class="button" (click)="tabChange('statistic')" [class.color]="id==='1'">
                 <span class="button-icon">
                     <i class="fas fa-wallet"></i>
@@ -35,8 +40,7 @@
                 <span class="button-text">Thống kê</span>
             </a>
         </div>
-        
-    </div>
-    
-</div>
 
+    </div>
+
+</div>

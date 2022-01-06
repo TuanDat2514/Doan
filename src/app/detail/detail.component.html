@@ -4,9 +4,10 @@
 
 <div id="block">
     <div class="h1"><h1>Danh sách giao dịch</h1></div>
-    <div class="table">
+    <div class="table-wrapper">
         
-        <table cellspacing="0" cellpadding="5" border="1">
+        <table class="fl-table">
+            <thead>
             <tr class="col-1">
                 <td>Mã giao dịch</td>
                 <td>Tên giao dịch</td>
@@ -16,10 +17,20 @@
                 <td>Ghi chú</td>
                 <td>Trạng thái</td>
             </tr>
+            </thead>
+            <tbody>
             <tr *ngFor="let detail of details">
                 <td>{{detail.id_detail}}</td>
                 <td>{{detail.detail}}</td>
-                <td>{{detail.category}}</td>
+                <td>
+                    <span *ngIf="detail.id_category==1">Xăng dầu</span>
+                    <span *ngIf="detail.id_category==2">Giải trí</span>
+                    <span *ngIf="detail.id_category==3">Điện nước</span>
+                    <span *ngIf="detail.id_category==4">Du lịch</span>
+
+                    <span *ngIf="detail.id_category==10">Lương</span>
+                    <span *ngIf="detail.id_category==11">Thưởng</span>
+                </td>
                 <td>{{detail.date|date:'dd/MM/yyyy'}}</td>
                 <td>{{detail.price|currency:"VND"}}</td>
                 <td>{{detail.note}}</td>
@@ -27,17 +38,16 @@
                     <span *ngIf="detail.status==0">Thu</span>
                     <span *ngIf="detail.status==1">Chi</span>
                 </td>
-                <td>
-                    <button class="button" (click)="delete(detail)">
-                    <a>
+                <td>  
+                    <a id="btn-del" class="button" (click)="delete(detail)" >
                         <span>
                             <i class="fas fa-trash-alt"></i>
                         </span>
-                    </a>
-                    </button>
+                    </a> 
                 </td>
             </tr>
+            </tbody>
         </table>
-        
     </div>
+  
 </div>

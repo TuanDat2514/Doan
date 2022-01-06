@@ -9,18 +9,21 @@ import { AuthService } from '../auth.service';
 export class DetailComponent implements OnInit {
   username=this.authService.getLoggedInUserName();
   details:any;
+  showMe: boolean;
   constructor(private dataService: DataService,private authService: AuthService) { }
 
   ngOnInit() {
     this.displayListDetail();
+    
   }
   displayListDetail() {
     this.dataService.getListDetail(this.username)
     .subscribe((data: Array<Detail>) => this.details = data)
     }
-    delete(detail:any){
+  delete(detail:any){
       this.dataService.deleteDetail(detail.id_detail).subscribe((res) =>{
         this.displayListDetail();
       });
     }
+  
 }
