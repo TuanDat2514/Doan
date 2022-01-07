@@ -36,9 +36,6 @@ export class DataService {
     return this.http.post<Response>(this.rootURL + "/detail/add", detail, {
       observe: 'response'});
   }
-  updateWallet(wallet:any){
-    return this.http.put(this.rootURL+"/wallet/"+wallet.idWallet+"?money="+wallet.money,wallet);
-  }
   getUserName(username):Observable<User> {
     return this.http.get<User>(this.rootURL+"/user/get?username="+username)
   }
