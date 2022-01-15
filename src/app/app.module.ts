@@ -6,10 +6,11 @@ import { LoginComponent } from './login/login.component';
 import { Routes, RouterModule } from '@angular/router';
 import { RegisterComponent } from './register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NgChartsModule } from 'ng2-charts';
+
 import { IndexComponent } from './index/index.component';
 import { IncomeComponent } from './income/income.component';
 import { SpendComponent } from './spend/spend.component';
-
 import { DetailComponent } from './detail/detail.component';
 import { TaskbarComponent } from './taskbar/taskbar.component';
 import { NgxFormatFieldModule } from 'ngx-format-field';
@@ -47,7 +48,8 @@ const appRoutes: Routes = [
     HttpClientModule,
     NgxFormatFieldModule,
     RouterModule.forRoot(appRoutes, { enableTracing: true }),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgChartsModule
   ],
   providers: [
     {
