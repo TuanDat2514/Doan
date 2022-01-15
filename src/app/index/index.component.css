@@ -5,6 +5,7 @@
     left: 220px;
     font-size: 30px;
     font-family: sans-serif;
+    display: inline;
 }
 #block{
     display:inline-block;

@@ -16,6 +16,7 @@ import { NgxFormatFieldModule } from 'ngx-format-field';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpInterceptorService } from './http-interceptor.service';
 import { StatisticComponent } from './statistic/statistic.component'
+
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full' },

@@ -1,15 +1,33 @@
 import { Component, OnInit } from '@angular/core';
-
+import { DataService,Detail} from '../data.service';
+import { AuthService } from '../auth.service';
+import { FormBuilder } from '@angular/forms';
+import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-statistic',
   templateUrl: './statistic.component.html',
   styleUrls: ['./statistic.component.css']
 })
 export class StatisticComponent implements OnInit {
-
-  constructor() { }
-
+  formDate = this.fb.group({
+    startDate:[''],
+    endDate:['']
+  });
+  constructor(private fb: FormBuilder,private dataService: DataService,private authService: AuthService) { }
+  sumIn;
+  sumSpend;
   ngOnInit(): void {
+    
   }
-
+  details;
+  getDetailbyDate(){
+    let startDate = new Date(this.formDate.value.startDate); 
+    var sdate= new Intl.DateTimeFormat("ja-JP").format(startDate);
+    let endDate= new Date(this.formDate.value.endDate);
+    var edate = new Intl.DateTimeFormat("ja-JP").format(endDate);
+    let username=this.authService.getLoggedInUserName();
+    this.dataService.getDetailbyDate(username,sdate,edate).subscribe((data:Array<Detail>)=>this.details=data)
+  }
 }
+
+

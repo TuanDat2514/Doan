@@ -27,7 +27,7 @@ export interface Wallet{
 })
 export class DataService {
  
-  rootURL = "http://192.168.16.16:8080";
+  rootURL = "http://localhost:8080";
   constructor(private http: HttpClient,private authService:AuthService) { }
   getListDetail(username): Observable<Array<Detail>> {
     return this.http.get<Array<Detail>>(this.rootURL + "/detail/all/"+username);
@@ -44,5 +44,8 @@ export class DataService {
     }
   getWallet(id_wallet:any):Observable<Wallet>{
     return this.http.get<Wallet>(this.rootURL+"/wallet/get/"+id_wallet);
+  }
+  getDetailbyDate(username,date1,date2): Observable<Array<Detail>>{
+    return this.http.get<Array<Detail>>(this.rootURL + "/detail/all/get/"+username+"?startDate="+date1+"&endDate="+date2);
   }
 }

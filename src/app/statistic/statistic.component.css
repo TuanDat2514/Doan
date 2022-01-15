@@ -9,7 +9,7 @@
 }
 .statistic{
     background-color: white;
-    margin-top: -405px;
+    margin-top: -470px;
     margin-left: 420px;
     margin-right: 250px;
     height: 600px;
@@ -57,4 +57,7 @@
     border-radius: 5px;
     width: 200px;
     padding:10px ;
+}
+.table{
+    margin-top: 70px;
 }
