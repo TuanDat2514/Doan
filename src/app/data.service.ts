@@ -48,4 +48,8 @@ export class DataService {
   getDetailbyDate(username,date1,date2): Observable<Array<Detail>>{
     return this.http.get<Array<Detail>>(this.rootURL + "/detail/all/get/"+username+"?startDate="+date1+"&endDate="+date2);
   }
+  getDataSpendChart(username,date1,date2): Observable<Number[]>{ 
+    return this.http.get<Number[]>(this.rootURL + "/detail/category/spend/"+username+"?startDate="+date1+"&endDate="+date2);
+  }
+ 
 }

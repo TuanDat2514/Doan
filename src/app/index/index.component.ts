@@ -19,6 +19,6 @@ export class IndexComponent implements OnInit{
     const userId =localStorage.getItem('userId');
     this.dataService.getWallet(userId).subscribe((data:Wallet)=>this.wallet=data)
   }
-  income:any;
+  
   
 }

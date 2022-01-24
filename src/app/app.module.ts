@@ -7,6 +7,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { RegisterComponent } from './register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgChartsModule } from 'ng2-charts';
+import { FormsModule } from '@angular/forms';
 
 import { IndexComponent } from './index/index.component';
 import { IncomeComponent } from './income/income.component';
@@ -49,7 +50,8 @@ const appRoutes: Routes = [
     NgxFormatFieldModule,
     RouterModule.forRoot(appRoutes, { enableTracing: true }),
     ReactiveFormsModule,
-    NgChartsModule
+    NgChartsModule,
+    FormsModule
   ],
   providers: [
     {
