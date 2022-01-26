@@ -51,5 +51,7 @@ export class DataService {
   getDataSpendChart(username,date1,date2): Observable<Number[]>{ 
     return this.http.get<Number[]>(this.rootURL + "/detail/category/spend/"+username+"?startDate="+date1+"&endDate="+date2);
   }
- 
+  getDataIncomeChart(username,date1,date2): Observable<Number[]>{ 
+    return this.http.get<Number[]>(this.rootURL + "/detail/category/income/"+username+"?startDate="+date1+"&endDate="+date2);
+  }
 }

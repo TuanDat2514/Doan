@@ -61,14 +61,16 @@
       </table>
       <div>       
         <div>
-          <div *ngIf="chart" class="chart" style="width: 40%;">
+          <div class="chart" style="width: 40%;">
+            <label *ngIf="chart" style="font-weight: bold;text-align: center;">CHI TIÊU</label>
             <canvas id="canvas">{{ chart }}
             </canvas>
           </div>
-          <!-- <div class="chart" style="width: 40%;">
-            <canvas baseChart [type]="'pie'" [legend]="true" [data]="pieChartData1" [options]="chartOptions">
+          <div class="chart" style="width: 40%;">
+            <label *ngIf="chartIn" style="font-weight: bold;text-align: center;">THU NHẬP</label>
+            <canvas id="canvasIn">{{chartIn}}
             </canvas>
-          </div> -->
+          </div>
         </div>
       </div>
     </div>

@@ -24,14 +24,18 @@ export class StatisticComponent implements OnInit {
   }
   details;
   dataSpendchart;
+  dataIncomechart;
   chart;
+  chartIn;
   getDetailbyDate() {
     let startDate = new Date(this.formDate.value.startDate);
     var sdate = new Intl.DateTimeFormat("ja-JP").format(startDate);
     let endDate = new Date(this.formDate.value.endDate);
     var edate = new Intl.DateTimeFormat("ja-JP").format(endDate);
     let username = this.authService.getLoggedInUserName();
+    //details
     this.dataService.getDetailbyDate(username, sdate, edate).subscribe((data: Array<Detail>) => this.details = data);
+    //data chart spend
     this.dataService.getDataSpendChart(username, sdate, edate).subscribe((data:number[]) =>{
       this.dataSpendchart = data;
       console.log(this.dataSpendchart);
@@ -55,6 +59,31 @@ export class StatisticComponent implements OnInit {
         }
       })
     }); 
+    //data chart income
+    this.dataService.getDataIncomeChart(username, sdate, edate).subscribe((data:number[]) =>{
+      this.dataIncomechart = data;
+      console.log(this.dataIncomechart);
+      this.chartIn = new Chart('canvasIn', {
+        type: 'pie',
+        data: {
+          labels: [ ['Lương'],'Thưởng'],
+          datasets: [ {
+            data: this.dataIncomechart,
+            backgroundColor: [
+              '#3a79d8',
+              '#2e76e2',
+              '#116df6',
+              '#0090ff'
+                
+          ],
+          }]
+        },
+        options: {
+          responsive: true
+        }
+      })
+    }); 
+
   }
 }
 
