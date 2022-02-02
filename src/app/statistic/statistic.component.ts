@@ -33,12 +33,13 @@ export class StatisticComponent implements OnInit {
     let endDate = new Date(this.formDate.value.endDate);
     var edate = new Intl.DateTimeFormat("ja-JP").format(endDate);
     let username = this.authService.getLoggedInUserName();
+   
     //details
     this.dataService.getDetailbyDate(username, sdate, edate).subscribe((data: Array<Detail>) => this.details = data);
     //data chart spend
     this.dataService.getDataSpendChart(username, sdate, edate).subscribe((data:number[]) =>{
       this.dataSpendchart = data;
-      console.log(this.dataSpendchart);
+      if(this.chart==null){
       this.chart = new Chart('canvas', {
         type: 'pie',
         data: {
@@ -58,23 +59,21 @@ export class StatisticComponent implements OnInit {
           responsive: true
         }
       })
-    }); 
-    //data chart income
-    this.dataService.getDataIncomeChart(username, sdate, edate).subscribe((data:number[]) =>{
-      this.dataIncomechart = data;
-      console.log(this.dataIncomechart);
-      this.chartIn = new Chart('canvasIn', {
+      }
+    else{
+      this.chart.destroy();
+      this.chart = new Chart('canvas', {
         type: 'pie',
         data: {
-          labels: [ ['Lương'],'Thưởng'],
+          labels: [ ['Xăng dầu'], ['Giải trí'], ['Điện nước'],'Du lịch'],
           datasets: [ {
-            data: this.dataIncomechart,
+            data: this.dataSpendchart,
             backgroundColor: [
-              '#3a79d8',
-              '#2e76e2',
-              '#116df6',
-              '#0090ff'
-                
+              '#fe6a6a',
+              '#fc4242',
+              '#ff1919',
+              '#e40000',
+              '#c10000'    
           ],
           }]
         },
@@ -82,8 +81,77 @@ export class StatisticComponent implements OnInit {
           responsive: true
         }
       })
+    }
+      
     }); 
+    //data chart income
+    this.dataService.getDataIncomeChart(username, sdate, edate).subscribe((data:number[]) =>{
+      this.dataIncomechart = data;
+      if(this.chartIn==null){
+        this.chartIn = new Chart('canvasIn', {
+          type: 'pie',
+          data: {
+            labels: [ ['Lương'],'Thưởng'],
+            datasets: [ {
+              data: this.dataIncomechart,
+              backgroundColor: [
+                '#3a79d8',
+                '#2e76e2',
+                '#116df6',
+                '#0090ff'
+                  
+            ],
+            }]
+          },
+          options: {
+            responsive: true
+          }
+        })
+      }
+      else{
+        this.chartIn.destroy();
+        this.chartIn = new Chart('canvasIn', {
+          type: 'pie',
+          data: {
+            labels: [ ['Lương'],'Thưởng'],
+            datasets: [ {
+              data: this.dataIncomechart,
+              backgroundColor: [
+                '#3a79d8',
+                '#2e76e2',
+                '#116df6',
+                '#0090ff'
+                  
+            ],
+            }]
+          },
+          options: {
+            responsive: true
+          }
+        })
+      }
+      
+    }); 
+    // get sum spend
+    this.dataService.getSumSpend(username, sdate, edate).subscribe((data:number)=>{
+      if(data==null){
+        this.sumSpend=0;
+      }
+      else{
+        this.sumSpend=data
+      }
+      
+    });
+    //get sum income
+    this.dataService.getSumIn(username, sdate, edate).subscribe((data:number)=>{
+      if(data==null){
+        this.sumIn=0;
+      }
+      else{
+        this.sumIn=data
+      }
 
+    });
   }
 }
 

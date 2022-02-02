@@ -15,9 +15,13 @@ export class IndexComponent implements OnInit{
     
   }
   wallet;
+  money;
   getWallet(){
     const userId =localStorage.getItem('userId');
-    this.dataService.getWallet(userId).subscribe((data:Wallet)=>this.wallet=data)
+    this.dataService.getWallet(userId).subscribe((data:Wallet)=>{
+      this.wallet=data;
+      this.money=this.wallet.money;
+    })
   }
   
   
