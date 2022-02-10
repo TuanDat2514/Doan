@@ -35,7 +35,22 @@ export class StatisticComponent implements OnInit {
     let username = this.authService.getLoggedInUserName();
    
     //details
-    this.dataService.getDetailbyDate(username, sdate, edate).subscribe((data: Array<Detail>) => this.details = data);
+    this.dataService.getDetailbyDate(username, sdate, edate).subscribe((data: Array<Detail>) =>{ 
+      this.details = data;
+      var sum=0;
+      var sumSpend=0
+      for(var i=0;i<data.length;i++){
+      if(data[i].status==0){
+        sum+=data[i].price;
+        }
+        
+      else{
+        sumSpend+=data[i].price;
+        } 
+      }
+      this.sumIn=sum; 
+      this.sumSpend=sumSpend;
+    });
     //data chart spend
     this.dataService.getDataSpendChart(username, sdate, edate).subscribe((data:number[]) =>{
       this.dataSpendchart = data;
@@ -132,26 +147,7 @@ export class StatisticComponent implements OnInit {
       }
       
     }); 
-    // get sum spend
-    this.dataService.getSumSpend(username, sdate, edate).subscribe((data:number)=>{
-      if(data==null){
-        this.sumSpend=0;
-      }
-      else{
-        this.sumSpend=data
-      }
-      
-    });
-    //get sum income
-    this.dataService.getSumIn(username, sdate, edate).subscribe((data:number)=>{
-      if(data==null){
-        this.sumIn=0;
-      }
-      else{
-        this.sumIn=data
-      }
-
-    });
+    
   }
 }
 
