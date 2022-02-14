@@ -5,71 +5,75 @@
   <div class="block">
     <div class="statistic">
       <p>Thống kê</p>
-      
+      <div>
         <div class="date" [formGroup]="formDate">
           <input formControlName="startDate" class="input-date" type="date" value="Từ ngày">
+          -
           <input formControlName="endDate" class="input-date" type="date" value="Đến ngày">
-          <a class="btn-search" (click)="getDetailbyDate()" ><i class="fas fa-search"></i></a>
-          
+          <a class="btn-search" (click)="getDetailbyDate()"><i class="fas fa-search"></i></a>
+          <input formControlName="year" class="input-date" type="text" value="year">
+          <a class="btn-search" (click)="getChartBar()"><i class="fas fa-search"></i></a>
         </div>
-      
-      <div class="tong">
-        <div class="thu">Tổng thu :{{sumIn|currency:"VND":"symbol"}}</div>
-        <div class="chi">Tổng chi :{{sumSpend|currency:"VND":"symbol"}}</div>
-      </div>
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">Mã giao dịch</th>
-            <th scope="col">Tên giao dịch</th>
-            <th scope="col">Danh mục</th>
-            <th scope="col">Ngày</th>
-            <th scope="col">Giá tiền</th>
-            <th scope="col">Ghi chú</th>
-            <th scope="col">Trạng thái</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let detail of details">
-            <td>{{detail.id_detail}}</td>
-            <td>{{detail.detail}}</td>
-            <td>
-              <span *ngIf="detail.id_category==1">Xăng dầu</span>
-              <span *ngIf="detail.id_category==2">Giải trí</span>
-              <span *ngIf="detail.id_category==3">Điện nước</span>
-              <span *ngIf="detail.id_category==4">Du lịch</span>
+        <div class="tong">
+          <div class="thu">Tổng thu :{{sumIn|currency:"VND":"symbol"}}</div>
+          <div class="chi">Tổng chi :{{sumSpend|currency:"VND":"symbol"}}</div>
+        </div>
+        
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Mã giao dịch</th>
+              <th scope="col">Tên giao dịch</th>
+              <th scope="col">Danh mục</th>
+              <th scope="col">Ngày</th>
+              <th scope="col">Giá tiền</th>
+              <th scope="col">Ghi chú</th>
+              <th scope="col">Trạng thái</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let detail of details">
+              <td>{{detail.id_detail}}</td>
+              <td>{{detail.detail}}</td>
+              <td>
+                <span *ngIf="detail.id_category==1">Xăng dầu</span>
+                <span *ngIf="detail.id_category==2">Giải trí</span>
+                <span *ngIf="detail.id_category==3">Điện nước</span>
+                <span *ngIf="detail.id_category==4">Du lịch</span>
 
-              <span *ngIf="detail.id_category==10">Lương</span>
-              <span *ngIf="detail.id_category==11">Thưởng</span>
-            </td>
-            <td>{{detail.date|date:'dd/MM/yyyy'}}</td>
-            <td>{{detail.price|currency:"VND"}}</td>
-            <td>{{detail.note}}</td>
-            <td>
-              <span *ngIf="detail.status==0">Thu</span>
-              <span *ngIf="detail.status==1">Chi</span>
-            </td>
-            <td>
-              <a id="btn-del" class="button">
-                <span>
-                  <i class="fas fa-trash-alt"></i>
-                </span>
-              </a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <div>       
+                <span *ngIf="detail.id_category==10">Lương</span>
+                <span *ngIf="detail.id_category==11">Thưởng</span>
+              </td>
+              <td>{{detail.date|date:'dd/MM/yyyy'}}</td>
+              <td>{{detail.price|currency:"VND"}}</td>
+              <td>{{detail.note}}</td>
+              <td>
+                <span *ngIf="detail.status==0">Thu</span>
+                <span *ngIf="detail.status==1">Chi</span>
+              </td>
+              <td>
+                <a id="btn-del" class="button">
+                  <span>
+                    <i class="fas fa-trash-alt"></i>
+                  </span>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
         <div>
-          <div class="chart" style="width: 40%;">
-            <label *ngIf="chart" style="font-weight: bold;text-align: center;">CHI TIÊU</label>
-            <canvas id="canvas">{{ chart }}
-            </canvas>
-          </div>
-          <div class="chart" style="width: 40%;">
-            <label *ngIf="chartIn" style="font-weight: bold;text-align: center;">THU NHẬP</label>
-            <canvas id="canvasIn">{{chartIn}}
-            </canvas>
+          <div>
+            <div class="chart" style="width: 40%;">
+              <label *ngIf="chart" style="font-weight: bold;text-align: center;">CHI TIÊU</label>
+              <canvas id="canvas">{{ chart }}
+              </canvas>
+            </div>
+            <div class="chart" style="width: 40%;">
+              <label *ngIf="chartIn" style="font-weight: bold;text-align: center;">THU NHẬP</label>
+              <canvas id="canvasIn">{{chartIn}}
+              </canvas>
+            </div>
           </div>
         </div>
       </div>

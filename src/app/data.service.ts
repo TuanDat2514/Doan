@@ -55,4 +55,8 @@ export class DataService {
     return this.http.get<Number[]>(this.rootURL + "/detail/category/income/"+username+"?startDate="+date1+"&endDate="+date2);
   }
 
+
+  getDataIncomeChartBar(username,year):Observable<Number[]>{
+    return this.http.get<Number[]>(this.rootURL+"/detail/category/income/year/"+username+"?year="+year);
+  }
 }

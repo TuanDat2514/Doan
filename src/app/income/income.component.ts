@@ -50,9 +50,8 @@ export class IncomeComponent implements OnInit {
   onChangeReactiveForm(key: string) {
     this.newForm.get(key).patchValue(this.newForm.get(key).value);
     }
-    
-      
-      
+ 
+       
 }
 
 

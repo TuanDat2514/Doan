@@ -22,6 +22,8 @@ export class LoginComponent implements OnInit {
   username="";
   id:any;
   wallet;
+  showMe=false;
+  
   ngOnInit(): void {
   }
   login() {
@@ -42,5 +44,12 @@ export class LoginComponent implements OnInit {
     this.invalidLogin = true;
     this.loginSuccess = false;
     });
+    }
+    tabChange(){
+      // this.id=ids;
+      // this.router.navigate(['/'+this.id])
+      
+      console.log(this.showMe);
+      
     }
 }

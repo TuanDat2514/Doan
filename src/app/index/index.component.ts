@@ -23,6 +23,5 @@ export class IndexComponent implements OnInit{
       this.money=this.wallet.money;
     })
   }
-  
-  
+ 
 }
