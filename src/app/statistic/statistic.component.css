@@ -7,6 +7,9 @@
     font-size: 40px;
    
 }
+.select-radio{
+    display: inline-block;
+}
 .statistic{
     background-color: white;
     margin-top: -470px;
@@ -69,4 +72,11 @@
 }
 .canva{
     background-color: blue;
+}
+.year{
+    margin-left: 25%;
+}
+.select{
+    margin-left: 35%;
+    
 }

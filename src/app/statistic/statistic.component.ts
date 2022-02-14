@@ -19,6 +19,8 @@ export class StatisticComponent implements OnInit {
   constructor(private fb: FormBuilder, private dataService: DataService, private authService: AuthService) { }
   sumIn;
   sumSpend;
+  sumInYear;
+  sumSpendYear;
   showMe: boolean;
   ngOnInit(): void {
 
@@ -29,8 +31,9 @@ export class StatisticComponent implements OnInit {
   chart;
   chartIn;
   dataInchartBar = new Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-  chartPie;
   chartBar;
+  detailsInYear;
+
   getDetailbyDate() {
     let startDate = new Date(this.formDate.value.startDate);
     var sdate = new Intl.DateTimeFormat("ja-JP").format(startDate);
@@ -157,10 +160,28 @@ export class StatisticComponent implements OnInit {
     let username = this.authService.getLoggedInUserName();
     var dataInBar = new Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
     var dataSpendBar = new Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-    //data chart Bar
-    this.dataService.getDataIncomeChartBar(username, year).subscribe((data: number[]) => {
+    //get detail
+    this.dataService.getDetailbyYear(username, year).subscribe((data: Array<Detail>) => {
+      this.detailsInYear = data;
+      var sum = 0;
+      var sumSpend = 0
       for (var i = 0; i < data.length; i++) {
-        if (data[0][2] = 1) {
+        if (data[i].status == 0) {
+          sum += data[i].price;
+        }
+
+        else {
+          sumSpend += data[i].price;
+        }
+      }
+      this.sumInYear = sum;
+      this.sumSpendYear = sumSpend;
+    });
+    //data chart Bar
+    this.dataService.getDataChartBar(username, year).subscribe((data: number[]) => {
+      this.dataInchartBar=data;
+      for (var i = 0; i < data.length; i++) {
+        if (data[i][2] == 1) {
           switch (data[i][1]) {
             case 1:
               dataInBar[0] = data[i][0];
@@ -239,10 +260,65 @@ export class StatisticComponent implements OnInit {
               break;
           }
         }
+        console.log(this.dataInchartBar[i][2]);
       }
       console.log(dataInBar);
       console.log(dataSpendBar);
+      
       //draw chart
+      if(this.chartBar==null){
+        this.chartBar = new Chart('chartBar', {
+          type: 'bar',
+          data: {
+            labels: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11','Tháng 12'],
+            datasets: [
+              { data: dataInBar, label: 'Chi tiêu' },
+              { data: dataSpendBar, label: 'Thu Nhập' }
+            ]
+          },
+          options: {
+            responsive: true,
+            scales: {
+              x: {},
+              y: {
+                min: 10
+              }
+            },
+            plugins: {
+              legend: {
+                display: true,
+              }  
+          }
+        }
+        })
+      } else{
+        this.chartBar.destroy();
+        this.chartBar = new Chart('chartBar', {
+          type: 'bar',
+          data: {
+            labels: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11','Tháng 12'],
+            datasets: [
+              { data: dataInBar, label: 'Chi tiêu' },
+              { data: dataSpendBar, label: 'Thu Nhập' }
+            ]
+          },
+          options: {
+            responsive: true,
+            scales: {
+              x: {},
+              y: {
+                min: 10
+              }
+            },
+            plugins: {
+              legend: {
+                display: true,
+              }  
+          }
+        }
+        })
+      }
+      
     });
   }
 }
