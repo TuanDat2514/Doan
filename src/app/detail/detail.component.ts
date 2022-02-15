@@ -10,6 +10,8 @@ export class DetailComponent implements OnInit {
   username=this.authService.getLoggedInUserName();
   details:any;
   showMe: boolean;
+  sumIn;
+  sumSpend;
   constructor(private dataService: DataService,private authService: AuthService) { }
 
   ngOnInit() {
@@ -17,13 +19,16 @@ export class DetailComponent implements OnInit {
     
   }
   displayListDetail() {
-    this.dataService.getListDetail(this.username)
-    .subscribe((data: Array<Detail>) => this.details = data)
+    this.dataService.getListDetail(this.username).subscribe((data: Array<Detail>) => {
+      this.details = data
+      
+    })
     }
   delete(detail:any){
       this.dataService.deleteDetail(detail.id_detail).subscribe((res) =>{
         this.displayListDetail();
       });
     }
+  
   
 }

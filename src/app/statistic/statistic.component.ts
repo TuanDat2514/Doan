@@ -23,7 +23,7 @@ export class StatisticComponent implements OnInit {
   sumSpendYear;
   showMe: boolean;
   ngOnInit(): void {
-
+    this.year1=this.selectyear();
   }
   details;
   dataSpendchart;
@@ -33,7 +33,21 @@ export class StatisticComponent implements OnInit {
   dataInchartBar = new Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
   chartBar;
   detailsInYear;
-
+  year1;
+  selected:number;
+  selectyear(){
+    let syear=2018;
+    var year= new Array();
+    for(var i=0;i<16;i++){
+      year[i]=syear;
+      syear++;
+    }
+    return year;
+  }
+  selectChangeHandler (event: any) {
+    //update the ui
+    this.selected = event.target.value;
+  }
   getDetailbyDate() {
     let startDate = new Date(this.formDate.value.startDate);
     var sdate = new Intl.DateTimeFormat("ja-JP").format(startDate);
@@ -61,6 +75,7 @@ export class StatisticComponent implements OnInit {
     //data chart spend
     this.dataService.getDataSpendChart(username, sdate, edate).subscribe((data: number[]) => {
       this.dataSpendchart = data;
+      
       if (this.chart == null) {
         this.chart = new Chart('canvas', {
           type: 'pie',
@@ -156,12 +171,12 @@ export class StatisticComponent implements OnInit {
     });
   }
   getChartBar() {
-    let year = this.formDate.value.year;
+    
     let username = this.authService.getLoggedInUserName();
     var dataInBar = new Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
     var dataSpendBar = new Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
     //get detail
-    this.dataService.getDetailbyYear(username, year).subscribe((data: Array<Detail>) => {
+    this.dataService.getDetailbyYear(username, this.selected).subscribe((data: Array<Detail>) => {
       this.detailsInYear = data;
       var sum = 0;
       var sumSpend = 0
@@ -178,7 +193,7 @@ export class StatisticComponent implements OnInit {
       this.sumSpendYear = sumSpend;
     });
     //data chart Bar
-    this.dataService.getDataChartBar(username, year).subscribe((data: number[]) => {
+    this.dataService.getDataChartBar(username, this.selected).subscribe((data: number[]) => {
       this.dataInchartBar=data;
       for (var i = 0; i < data.length; i++) {
         if (data[i][2] == 1) {

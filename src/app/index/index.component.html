@@ -2,5 +2,9 @@
     <app-taskbar></app-taskbar>
 </div>
 <div id="block">
-    <div class="money">Số dư:{{money|currency:"VND"}}</div>
+    <div class="money">
+        Số dư:{{money|currency:"VND"}}<br>
+        Tổng chi:{{sumIn|currency:"VND"}}<br>
+        Tổng thu:{{sumSpend|currency:"VND"}}</div>
+
 </div>

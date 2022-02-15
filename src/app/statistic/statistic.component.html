@@ -87,7 +87,11 @@
       <!-- year -->
       <div class="bar" *ngIf="!showMe">
         <div class="year" [formGroup]="formDate">
-          <input formControlName="year" class="input-year" type="text" value="year">
+          
+          
+          <select (change)="selectChangeHandler($event)" >
+            <option *ngFor="let item of year1" [value]="item">{{item}}</option>
+          </select>
           <a class="btn-search" (click)="getChartBar()"><i class="fas fa-search"></i></a>
         </div>
         <div class="tong">
