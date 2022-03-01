@@ -171,7 +171,6 @@ export class StatisticComponent implements OnInit {
     });
   }
   getChartBar() {
-    
     let username = this.authService.getLoggedInUserName();
     var dataInBar = new Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
     var dataSpendBar = new Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);

@@ -2,9 +2,15 @@
     <app-taskbar></app-taskbar>
 </div>
 <div id="block">
-    <div class="money">
+    <div class="money" *ngIf="showMe">
         Số dư:{{money|currency:"VND"}}<br>
-        Tổng chi:{{sumIn|currency:"VND"}}<br>
-        Tổng thu:{{sumSpend|currency:"VND"}}</div>
-
+    </div> 
+    <div class="money" *ngIf="!showMe" >
+        Số dư của bạn đã hết. Bạn cần nhập thêm tiền<br>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <input type="text" formControlName="money" >
+            <button type="submit">OK</button>
+            <div>{{message}}</div>
+        </form>
+    </div>   
 </div>

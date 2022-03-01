@@ -19,11 +19,11 @@ export interface User {
   SDT:Number;
 }
 export interface Wallet{
-  idWallet:number;
+  id:number;
   money:number;
 }
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root'  
 })
 export class DataService {
  
@@ -44,6 +44,9 @@ export class DataService {
     }
   getWallet(id_wallet:any):Observable<Wallet>{
     return this.http.get<Wallet>(this.rootURL+"/wallet/get/"+id_wallet);
+  }
+  updateWallet(wallet:any){
+    return this.http.put(this.rootURL+"/wallet/update/"+wallet.id_wallet,wallet);
   }
   getDetailbyDate(username,date1,date2): Observable<Array<Detail>>{
     return this.http.get<Array<Detail>>(this.rootURL + "/detail/all/get/"+username+"?startDate="+date1+"&endDate="+date2);
