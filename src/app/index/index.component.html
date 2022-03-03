@@ -7,10 +7,6 @@
     </div> 
     <div class="money" *ngIf="!showMe" >
         Số dư của bạn đã hết. Bạn cần nhập thêm tiền<br>
-        <form [formGroup]="form" (ngSubmit)="onSubmit()">
-            <input type="text" formControlName="money" >
-            <button type="submit">OK</button>
-            <div>{{message}}</div>
-        </form>
+        <button class="btn" [routerLink]="['/income']">OK</button>
     </div>   
 </div>

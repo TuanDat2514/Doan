@@ -11,3 +11,20 @@
     display:inline-block;
     position: relative;
 }
+.btn{
+    width: 30%;
+    height: 40px;
+    border: 1px solid;
+    background: #2691d9;
+    border-radius: 25px;
+    font-size: 18px;
+    color: #e9f4fb;
+    font-weight: 700;
+    cursor: pointer;
+    outline: none;
+    font-family: sans-serif;  
+    margin-top: 10px;
+    text-align: center;
+    position: relative;
+    left: 28px; 
+}

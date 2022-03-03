@@ -36,6 +36,12 @@ export class DataService {
     return this.http.post<Response>(this.rootURL + "/detail/add", detail, {
       observe: 'response'});
   }
+  getDetail(id:any):Observable<Detail>{
+    return this.http.get<Detail>(this.rootURL+"/detail/"+id);
+  }
+  updateDetail(detail:any) {
+    return this.http.put(this.rootURL + "/detail/update/" + detail.id, detail);
+    }
   getUserName(username):Observable<User> {
     return this.http.get<User>(this.rootURL+"/user/get?username="+username)
   }

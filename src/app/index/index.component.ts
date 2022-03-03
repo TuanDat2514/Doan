@@ -40,20 +40,4 @@ export class IndexComponent implements OnInit {
       }
     })
   }
-  onSubmit() {
-    let code;
-    const userId = localStorage.getItem('userId');
-    let wallet = { id_wallet: userId, money: "" };
-    wallet.money = this.form.value.money;
-    this.dataService.updateWallet(wallet).subscribe(
-      (response) => { },
-      error => {
-        code = error.status;
-        console.log("status code:" + code);
-        if (code == 303)
-          this.message="Thêm thành công";
-      }
-    );
-    console.log(wallet);
-  }
 }

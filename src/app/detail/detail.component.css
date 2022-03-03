@@ -61,6 +61,7 @@ h2{
     margin-right: 150px;
     overflow-y: scroll;
     overflow-x: hidden;
+    z-index: 2;
 }
 
 .fl-table {
@@ -170,4 +171,118 @@ h2{
         display: block;
         text-align: center;
     }
+
+}
+.mess-fix{
+    
+    position: fixed;
+    background-color: rgba(191, 204, 6, 0.726);
+    height: 100%;
+    width: 500px;
+    margin-left: 40%;
+    margin-top: -450px;
+    border-radius: 20px;
+    backdrop-filter: blur(2px);
+    z-index: 3;
+}
+
+.block{
+    display: inline;
+    
+}
+.block p{
+    text-align: center;
+    font-size: 40px;
+    border-bottom: solid 2px black;
+    padding-bottom: 50px;
+}
+form .txt_field{
+    position: relative;
+    border-bottom: 2px solid #adadad;
+    margin: 30px 0;
+    
+
+}
+.income{
+    background-color: white;
+    margin-top: -470px;
+    margin-left: 420px;
+    margin-right: 250px;
+}
+.body-form{
+    width: 400px;
+    padding-left: 50px;
+    padding-bottom: 50px;
+    
+}
+.body-form button{
+    padding: 0.6em 1.6em;
+    border: 0.1em solid #ffffff;
+    border-radius: 10px;
+    box-sizing: border-box;
+    font-family: sans-serif;
+    font-weight: 500;
+    color:#ffffff;
+    font-size: 16px;
+    text-align: center;
+    transition: all 0.2s;
+    background-color: cornflowerblue;
+    margin-left: 50px;
+}
+.body-form button:hover{
+    color:white;
+    background: blue;
+}
+.txt_field input{
+    width: 100%;
+    padding: 0 15px;
+    height: 40px;
+    font-size: 16px;
+    border: none;
+    background: none;
+    outline: none;
+}
+.txt_field textarea{
+    width: 100%;
+    padding: 0 15px;
+    height: 40px;
+    font-size: 16px;
+    border: none;
+    background: none;
+    outline: none;
+}
+.txt_field label{
+    top: 45%;
+    left: 5px;
+    color:black;
+    transform: translateY(-50%);
+    font-size: 20px;
+    pointer-events: none;
+    transition: .5s;
+} 
+.txt_field span{
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background:blueviolet;
+    
+}
+.body-form select{
+    border: none;
+   outline: 0;
+   box-shadow: none;
+   background: transparent;
+   position: relative;
+   display: flex;
+   width: 100%;
+   line-height: 3;
+   
+   overflow: hidden;
+   border-radius: .25em;
+   color: black;
+   font-family: sans-serif;
+   font-size: 16px;
+   padding: 0 15px;
 }
