@@ -80,7 +80,7 @@ export class StatisticComponent implements OnInit {
         this.chart = new Chart('canvas', {
           type: 'pie',
           data: {
-            labels: [['Xăng dầu'], ['Giải trí'], ['Điện nước'], 'Du lịch'],
+            labels: [['Xăng dầu'], ['Giải trí'], ['Điện nước'], ['Du lịch'],['Sức khỏe'],['Giáo dục'],'Shopping'],
             datasets: [{
               data: this.dataSpendchart,
               backgroundColor: [
@@ -88,7 +88,10 @@ export class StatisticComponent implements OnInit {
                 '#fc4242',
                 '#ff1919',
                 '#e40000',
-                '#c10000'
+                '#c10000',
+                '#a70202',
+                '#910101'
+
               ],
             }]
           },
@@ -102,7 +105,7 @@ export class StatisticComponent implements OnInit {
         this.chart = new Chart('canvas', {
           type: 'pie',
           data: {
-            labels: [['Xăng dầu'], ['Giải trí'], ['Điện nước'], 'Du lịch'],
+            labels: [['Xăng dầu'], ['Giải trí'], ['Điện nước'], ['Du lịch'],['Sức khỏe'],['Giáo dục'],'Shopping'],
             datasets: [{
               data: this.dataSpendchart,
               backgroundColor: [
@@ -110,7 +113,9 @@ export class StatisticComponent implements OnInit {
                 '#fc4242',
                 '#ff1919',
                 '#e40000',
-                '#c10000'
+                '#c10000',
+                '#a70202',
+                '#910101'
               ],
             }]
           },
@@ -128,15 +133,15 @@ export class StatisticComponent implements OnInit {
         this.chartIn = new Chart('canvasIn', {
           type: 'pie',
           data: {
-            labels: [['Lương'], 'Thưởng'],
+            labels: [['Lương'], ['Thưởng'],['Được tặng'],'Bản đồ'],
             datasets: [{
               data: this.dataIncomechart,
               backgroundColor: [
-                '#3a79d8',
-                '#2e76e2',
-                '#116df6',
-                '#0090ff'
-
+                '#0261ff',
+                '#0050d4',
+                '#013892',
+                '#002665',
+                '#5c99ff'
               ],
             }]
           },
@@ -150,15 +155,15 @@ export class StatisticComponent implements OnInit {
         this.chartIn = new Chart('canvasIn', {
           type: 'pie',
           data: {
-            labels: [['Lương'], 'Thưởng'],
+            labels: [['Lương'], ['Thưởng'],['Được tặng'],'Bản đồ'],
             datasets: [{
               data: this.dataIncomechart,
               backgroundColor: [
-                '#3a79d8',
-                '#2e76e2',
-                '#116df6',
-                '#0090ff'
-
+                '#0261ff',
+                '#0050d4',
+                '#013892',
+                '#002665',
+                '#5c99ff'
               ],
             }]
           },

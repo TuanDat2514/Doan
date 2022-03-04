@@ -29,9 +29,16 @@
                         <span *ngIf="detail.id_category==2">Giải trí</span>
                         <span *ngIf="detail.id_category==3">Điện nước</span>
                         <span *ngIf="detail.id_category==4">Du lịch</span>
+                        <span *ngIf="detail.id_category==5">Sức khỏe</span>
+                        <span *ngIf="detail.id_category==6">Giáo dục</span>
+                        <span *ngIf="detail.id_category==7">Shopping</span>
+
+
 
                         <span *ngIf="detail.id_category==10">Lương</span>
                         <span *ngIf="detail.id_category==11">Thưởng</span>
+                        <span *ngIf="detail.id_category==12">Được tặng</span>
+                        <span *ngIf="detail.id_category==13">Bán đồ</span>
                     </td>
                     <td>{{detail.date|date:'dd/MM/yyyy'}}</td>
                     <td>{{detail.price|currency:"VND"}}</td>
@@ -72,7 +79,9 @@
               <select formControlName="id_category" placeholder="Danh mục">
                 <option value="" selected disabled>Danh mục</option>
                 <option value=10>Lương</option>
-                <option value=11>Thưởng</option>
+            <option value=11>Thưởng</option>
+            <option value=12>Được tặng</option>
+            <option value=13>Bán đồ</option>
               </select>
               <span></span>
             </div>
@@ -80,9 +89,12 @@
                 <select formControlName="id_category" placeholder="Danh mục">
                   <option value="" selected disabled>Danh mục</option>
                   <option value=1>Xăng dầu</option>
-                  <option value=2>Giải trí</option>
-                  <option value=3>Điện nước</option>
-                  <option value=4>Du lịch</option>
+              <option value=2>Giải trí</option>
+              <option value=3>Điện nước</option>
+              <option value=4>Du lịch</option>
+              <option value=5>Sức khỏe</option>
+              <option value=6>Giáo dục</option>
+              <option value=7>Shopping</option>
                 </select>
                 <span></span>
               </div>
