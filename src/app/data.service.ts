@@ -63,8 +63,6 @@ export class DataService {
   getDataIncomeChart(username,date1,date2): Observable<Number[]>{ 
     return this.http.get<Number[]>(this.rootURL + "/detail/category/income/"+username+"?startDate="+date1+"&endDate="+date2);
   }
-
-
   getDataChartBar(username,year):Observable<Number[]>{
     return this.http.get<Number[]>(this.rootURL+"/detail/month/"+username+"?year="+year);
   }

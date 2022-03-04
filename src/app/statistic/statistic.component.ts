@@ -23,7 +23,7 @@ export class StatisticComponent implements OnInit {
   sumSpendYear;
   showMe: boolean;
   ngOnInit(): void {
-    this.year1=this.selectyear();
+    this.year1 = this.selectyear();
   }
   details;
   dataSpendchart;
@@ -34,18 +34,18 @@ export class StatisticComponent implements OnInit {
   chartBar;
   detailsInYear;
   year1;
-  selected:number;
-  selectyear(){
-    let syear=2018;
-    var year= new Array();
-    for(var i=0;i<16;i++){
-      year[i]=syear;
+  selected: number;
+  selectyear() {
+    let syear = 2018;
+    var year = new Array();
+    for (var i = 0; i < 16; i++) {
+      year[i] = syear;
       syear++;
     }
     return year;
   }
-  selectChangeHandler (event: any) {
-    //update the ui
+  selectChangeHandler(event: any) {
+
     this.selected = event.target.value;
   }
   getDetailbyDate() {
@@ -73,16 +73,45 @@ export class StatisticComponent implements OnInit {
       this.sumSpend = sumSpend;
     });
     //data chart spend
+    
+    //draw chart pie
     this.dataService.getDataSpendChart(username, sdate, edate).subscribe((data: number[]) => {
       this.dataSpendchart = data;
       
+      var dataSpendPie = new Array(0, 0, 0, 0, 0, 0, 0);
+      for (var i = 0; i < data.length; i++) {
+        switch (data[i][1]) {
+          case 1:
+            dataSpendPie[0] = data[i][0];
+            break;
+          case 2:
+            dataSpendPie[1] = data[i][0];
+            break;
+          case 3:
+            dataSpendPie[2] = data[i][0];
+            break;
+          case 4:
+            dataSpendPie[3] = data[i][0];
+            break;
+          case 5:
+            dataSpendPie[4] = data[i][0];
+            break;
+          case 6:
+            dataSpendPie[5] = data[i][0];
+            break;
+          case 7:
+            dataSpendPie[6] = data[i][0];
+            break;
+        }
+        console.log(dataSpendPie);
+      }
       if (this.chart == null) {
         this.chart = new Chart('canvas', {
           type: 'pie',
           data: {
-            labels: [['Xăng dầu'], ['Giải trí'], ['Điện nước'], ['Du lịch'],['Sức khỏe'],['Giáo dục'],'Shopping'],
+            labels: [['Xăng dầu'], ['Giải trí'], ['Điện nước'], ['Du lịch'], ['Sức khỏe'], ['Giáo dục'], 'Shopping'],
             datasets: [{
-              data: this.dataSpendchart,
+              data: dataSpendPie,
               backgroundColor: [
                 '#fe6a6a',
                 '#fc4242',
@@ -90,8 +119,8 @@ export class StatisticComponent implements OnInit {
                 '#e40000',
                 '#c10000',
                 '#a70202',
-                '#910101'
-
+                '#910101',
+                '#964564'
               ],
             }]
           },
@@ -105,9 +134,9 @@ export class StatisticComponent implements OnInit {
         this.chart = new Chart('canvas', {
           type: 'pie',
           data: {
-            labels: [['Xăng dầu'], ['Giải trí'], ['Điện nước'], ['Du lịch'],['Sức khỏe'],['Giáo dục'],'Shopping'],
+            labels: [['Xăng dầu'], ['Giải trí'], ['Điện nước'], ['Du lịch'], ['Sức khỏe'], ['Giáo dục'], 'Shopping'],
             datasets: [{
-              data: this.dataSpendchart,
+              data: dataSpendPie,
               backgroundColor: [
                 '#fe6a6a',
                 '#fc4242',
@@ -129,13 +158,31 @@ export class StatisticComponent implements OnInit {
     //data chart income
     this.dataService.getDataIncomeChart(username, sdate, edate).subscribe((data: number[]) => {
       this.dataIncomechart = data;
+      var dataInPie = new Array(0, 0, 0, 0);
+      for (var i = 0; i < data.length; i++) {
+        switch (data[i][1]) {
+          
+          case 10:
+            dataInPie[0] = data[i][0];
+            break;
+          case 11:
+            dataInPie[1] = data[i][0];
+            break;
+          case 12:
+            dataInPie[2] = data[i][0];
+            break;
+          case 13:
+            dataInPie[3] = data[i][0];
+            break;
+        }
+      }
       if (this.chartIn == null) {
         this.chartIn = new Chart('canvasIn', {
           type: 'pie',
           data: {
-            labels: [['Lương'], ['Thưởng'],['Được tặng'],'Bản đồ'],
+            labels: [['Lương'], ['Thưởng'], ['Được tặng'], 'Bản đồ'],
             datasets: [{
-              data: this.dataIncomechart,
+              data: dataInPie,
               backgroundColor: [
                 '#0261ff',
                 '#0050d4',
@@ -155,9 +202,9 @@ export class StatisticComponent implements OnInit {
         this.chartIn = new Chart('canvasIn', {
           type: 'pie',
           data: {
-            labels: [['Lương'], ['Thưởng'],['Được tặng'],'Bản đồ'],
+            labels: [['Lương'], ['Thưởng'], ['Được tặng'], 'Bản đồ'],
             datasets: [{
-              data: this.dataIncomechart,
+              data: dataInPie,
               backgroundColor: [
                 '#0261ff',
                 '#0050d4',
@@ -172,7 +219,6 @@ export class StatisticComponent implements OnInit {
           }
         })
       }
-
     });
   }
   getChartBar() {
@@ -198,9 +244,9 @@ export class StatisticComponent implements OnInit {
     });
     //data chart Bar
     this.dataService.getDataChartBar(username, this.selected).subscribe((data: number[]) => {
-      this.dataInchartBar=data;
+      this.dataInchartBar = data;
       for (var i = 0; i < data.length; i++) {
-        if (data[i][2] == 1) {
+        if (data[i][2] == 0) {
           switch (data[i][1]) {
             case 1:
               dataInBar[0] = data[i][0];
@@ -283,16 +329,17 @@ export class StatisticComponent implements OnInit {
       }
       console.log(dataInBar);
       console.log(dataSpendBar);
-      
+
       //draw chart
-      if(this.chartBar==null){
+      if (this.chartBar == null) {
         this.chartBar = new Chart('chartBar', {
           type: 'bar',
           data: {
-            labels: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11','Tháng 12'],
+            labels: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'],
             datasets: [
-              { data: dataInBar, label: 'Chi tiêu' },
-              { data: dataSpendBar, label: 'Thu Nhập' }
+              { data: dataSpendBar, label: 'Chi tiêu' },
+              { data: dataInBar, label: 'Thu Nhập' }
+
             ]
           },
           options: {
@@ -306,19 +353,19 @@ export class StatisticComponent implements OnInit {
             plugins: {
               legend: {
                 display: true,
-              }  
+              }
+            }
           }
-        }
         })
-      } else{
+      } else {
         this.chartBar.destroy();
         this.chartBar = new Chart('chartBar', {
           type: 'bar',
           data: {
-            labels: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11','Tháng 12'],
+            labels: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'],
             datasets: [
-              { data: dataInBar, label: 'Chi tiêu' },
-              { data: dataSpendBar, label: 'Thu Nhập' }
+              { data: dataSpendBar, label: 'Chi tiêu' },
+              { data: dataInBar, label: 'Thu nhập ' }
             ]
           },
           options: {
@@ -332,12 +379,12 @@ export class StatisticComponent implements OnInit {
             plugins: {
               legend: {
                 display: true,
-              }  
+              }
+            }
           }
-        }
         })
       }
-      
+
     });
   }
 }

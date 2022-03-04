@@ -42,13 +42,17 @@
               <td>{{detail.id_detail}}</td>
               <td>{{detail.detail}}</td>
               <td>
-                <span *ngIf="detail.id_category==1">Xăng dầu</span>
                 <span *ngIf="detail.id_category==2">Giải trí</span>
-                <span *ngIf="detail.id_category==3">Điện nước</span>
-                <span *ngIf="detail.id_category==4">Du lịch</span>
+                        <span *ngIf="detail.id_category==3">Điện nước</span>
+                        <span *ngIf="detail.id_category==4">Du lịch</span>
+                        <span *ngIf="detail.id_category==5">Sức khỏe</span>
+                        <span *ngIf="detail.id_category==6">Giáo dục</span>
+                        <span *ngIf="detail.id_category==7">Shopping</span>
 
-                <span *ngIf="detail.id_category==10">Lương</span>
-                <span *ngIf="detail.id_category==11">Thưởng</span>
+                        <span *ngIf="detail.id_category==10">Lương</span>
+                        <span *ngIf="detail.id_category==11">Thưởng</span>
+                        <span *ngIf="detail.id_category==12">Được tặng</span>
+                        <span *ngIf="detail.id_category==13">Bán đồ</span>
               </td>
               <td>{{detail.date|date:'dd/MM/yyyy'}}</td>
               <td>{{detail.price|currency:"VND"}}</td>
@@ -56,27 +60,19 @@
               <td>
                 <span *ngIf="detail.status==0">Thu</span>
                 <span *ngIf="detail.status==1">Chi</span>
-              </td>
-              <td>
-                <a id="btn-del" class="button">
-                  <span>
-                    <i class="fas fa-trash-alt"></i>
-                  </span>
-                </a>
-              </td>
+              </td>  
             </tr>
           </tbody>
         </table>
-
         <div>
           <!-- chart Pie -->
-          <div>
-            <div class="chart" style="width: 40%;">
+          <div style="display: flexbox;">
+            <div class="chart">
               <label *ngIf="chart" style="font-weight: bold;text-align: center;">CHI TIÊU</label>
               <canvas id="canvas">{{ chart }}
               </canvas>
             </div>
-            <div class="chart" style="width: 40%;">
+            <div class="chart">
               <label *ngIf="chartIn" style="font-weight: bold;text-align: center;">THU NHẬP</label>
               <canvas id="canvasIn">{{chartIn}}
               </canvas>
@@ -87,8 +83,7 @@
       <!-- year -->
       <div class="bar" *ngIf="!showMe">
         <div class="year" [formGroup]="formDate">
-          
-          
+        
           <select (change)="selectChangeHandler($event)" >
             <option *ngFor="let item of year1" [value]="item">{{item}}</option>
           </select>

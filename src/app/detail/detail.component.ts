@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ElementRef } from '@angular/core';
 import { DataService,Detail} from '../data.service';
 import { AuthService } from '../auth.service';
 import { FormBuilder } from '@angular/forms';
@@ -25,7 +25,7 @@ export class DetailComponent implements OnInit {
     note: [''],
     username:[this.authService.getLoggedInUserName()],
   });
-  constructor(private dataService: DataService,private authService: AuthService,private fb: FormBuilder) { }
+  constructor(private dataService: DataService,private authService: AuthService,private fb: FormBuilder,private ElByClassName: ElementRef) { }
 
   ngOnInit() {
     this.displayListDetail();
